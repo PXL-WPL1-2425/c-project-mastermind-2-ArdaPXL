@@ -16,12 +16,16 @@ namespace Mastermind_02
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int remainingAttempts = 10;
+        private List<string> colors = new List<string> { "Red", "Yellow", "Orange", "White", "Green", "Blue" };
+        private List<string> _code;
+        private List<string> selectedColors;
         private List<string> history = new List<string>();
+        private int remainingAttempts = 10; 
         private int score = 100;
         public MainWindow()
         {
             InitializeComponent();
+            InitializeGame();
         }
         private void CheckButton_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +56,34 @@ namespace Mastermind_02
 
         
         }
-        
+        private void CheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (remainingAttempts <= 0) return;
+
+            int penalty = 0;
+            List<string> feedback = GetFeedback(selectedColors);
+
+            foreach (var feedbackItem in feedback)
+            {
+                if (feedbackItem == "White") penalty += 1; 
+                else if (feedbackItem == "Red") penalty += 0; 
+                else penalty += 2;
+            }
+
+            score -= penalty;
+            LabelScore.Content = $"Score: {score}";
+        }
+        private void EndGame()
+        {
+            var result = MessageBox.Show("Do you want to play again?", "Game Over", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                InitializeGame();
+            else
+            {
+                this.Close(); 
+            }
+        }
     }
 }
