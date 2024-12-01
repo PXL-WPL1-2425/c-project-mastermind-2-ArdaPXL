@@ -31,7 +31,7 @@ namespace Mastermind_02
         {
             if (remainingAttempts <= 0)
             {
-                MessageBox.Show($"Game Over! The correct code was: {string.Join(", ", _code)}");
+                MessageBox.Show($"Game Over! de juiste code was: {string.Join(", ", _code)}");
                 EndGame();
                 return;
             }
@@ -41,7 +41,7 @@ namespace Mastermind_02
 
             if (remainingAttempts == 0)
             {
-                MessageBox.Show($"Game Over! The correct code was: {string.Join(", ", _code)}");
+                MessageBox.Show($"Game Over! de juiste code was: {string.Join(", ", _code)}");
                 EndGame();
             }
         }
@@ -75,7 +75,7 @@ namespace Mastermind_02
         }
         private void EndGame()
         {
-            var result = MessageBox.Show("Do you want to play again?", "Game Over", MessageBoxButton.YesNo);
+            var result = MessageBox.Show("wil je opniew spelen?", "Game Over", MessageBoxButton.YesNo);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -83,6 +83,15 @@ namespace Mastermind_02
             else
             {
                 this.Close(); 
+            }
+        }
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            var result = MessageBox.Show("wil je dit spel beindiging?", "Exit", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true; // Prevent closure
             }
         }
     }
