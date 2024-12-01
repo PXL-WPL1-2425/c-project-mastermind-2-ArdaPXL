@@ -17,6 +17,7 @@ namespace Mastermind_02
     public partial class MainWindow : Window
     {
         private int remainingAttempts = 10;
+        private List<string> history = new List<string>();
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +31,6 @@ namespace Mastermind_02
                 return;
             }
 
-            // Logic for checking the attempt
             remainingAttempts--;
             LabelRemainingAttempts.Content = $"Attempts Left: {remainingAttempts}";
 
@@ -39,6 +39,17 @@ namespace Mastermind_02
                 MessageBox.Show($"Game Over! The correct code was: {string.Join(", ", _code)}");
                 EndGame();
             }
+        }
+        private void CheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (remainingAttempts <= 0) return;
+
+            List<string> feedback = GetFeedback(selectedColors);
+            string attemptSummary = $"Attempt: {string.Join(", ", selectedColors)} | Feedback: {string.Join(", ", feedback)}";
+            history.Add(attemptSummary);
+            ListBoxHistory.Items.Add(attemptSummary); 
+
+        
         }
     }
 }
