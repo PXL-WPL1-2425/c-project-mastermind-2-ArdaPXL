@@ -18,6 +18,7 @@ namespace Mastermind_02
     {
         private int remainingAttempts = 10;
         private List<string> history = new List<string>();
+        private int score = 100;
         public MainWindow()
         {
             InitializeComponent();
@@ -51,5 +52,6 @@ namespace Mastermind_02
 
         
         }
+        
     }
 }

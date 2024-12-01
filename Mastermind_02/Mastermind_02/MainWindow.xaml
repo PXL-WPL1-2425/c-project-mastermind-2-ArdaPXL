@@ -9,5 +9,6 @@
     <Grid>
         <Label x:Name="LabelRemainingAttempts" Grid.Row="0" Grid.ColumnSpan="4" Content="Attempts Left: 10" HorizontalAlignment="Center" />
         <ListBox x:Name="ListBoxHistory" Grid.Row="4" Grid.ColumnSpan="4" Height="200" />
+        <Label x:Name="LabelScore" Content="Score: 100" HorizontalAlignment="Center" Margin="0,23,0,-23" />
     </Grid>
 </Window>
